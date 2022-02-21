@@ -23,6 +23,7 @@ class _MainPageState extends State<MainPage> {
       child: Column(
         children: [
           SizedBox(
+            height:100,
             child: Container(
               width: double.infinity,
               child: Center(
