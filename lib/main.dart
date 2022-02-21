@@ -15,7 +15,17 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.teal,
+          fontFamily: 'RobotoMono',
         ),
         home: const MainPage());
   }
+}
+
+class Themes {
+  static final light = ThemeData.light().copyWith(
+    backgroundColor: Colors.white,
+  );
+  static final dark = ThemeData.dark().copyWith(
+    backgroundColor: Colors.black,
+  );
 }

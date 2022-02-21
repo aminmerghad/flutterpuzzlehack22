@@ -37,7 +37,7 @@ class StatisticPart extends StatelessWidget {
                         Column(
                           children: [
                             GetBuilder<Controller>(
-                                id: 'Tails',
+                                id: 'Tils',
                                 builder: (Controller controller) {
                                   return Text(
                                     'Tiles: ${controller.tile}',
@@ -92,13 +92,15 @@ class StatisticPart extends StatelessWidget {
                     ),
                     ElevatedButton(
                         child: Container(
-                          width: 80,
+                          width: 100,
                           height: 21,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
                                 'Shuffle',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.white),
                               ),
                               SizedBox(
                                 width: 5,

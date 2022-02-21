@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:puzzle/Model/model.dart';
-import 'PuzzlePeace.dart';
+import 'PuzzlePiece.dart';
 import '../../Controller/controller.dart';
 
 class Puzzle extends MultiChildRenderObjectWidget {
@@ -30,8 +30,6 @@ class CustPuzzle extends ParentDataWidget<PuzzleParentData> {
     final parentData = renderObject.parentData as PuzzleParentData;
     parentData.index = index;
     parentData.randIndex = randIndex;
-    parentData.offset = parentData.idealposition!;
-
     final targetObject = renderObject.parent;
     if (targetObject is RenderObject) {
       targetObject.markNeedsLayout();

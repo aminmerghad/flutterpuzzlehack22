@@ -112,7 +112,6 @@ class Controller extends GetxController {
     }
   }
 
-  String wining = '';
   int _move = 0;
   int get move => _move;
   set move(int i) {
@@ -124,7 +123,7 @@ class Controller extends GetxController {
     if (repaint != null) {
       inialisation();
       update(['Move']);
-      update(['Tails']);
+      update(['Tils']);
       repaint!(randomList);
     }
   }
@@ -140,7 +139,7 @@ class Controller extends GetxController {
       _wins++;
       update(['Win']);
     }
-    update(['Tails']);
+    update(['Tils']);
   }
 
   Map<int, List<List<Offset>>> result = <int, List<List<Offset>>>{};

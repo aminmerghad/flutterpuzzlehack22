@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-import '/../Widgets/PuzzlePeace.dart';
+import '../../Widgets/PuzzlePiece.dart';
 
-class InitialAnimation extends StatefulWidget {
-  InitialAnimation({
+class ShuffleAnimation extends StatefulWidget {
+  ShuffleAnimation({
     Key? key,
     required this.randInd,
     required this.index,
@@ -14,43 +14,47 @@ class InitialAnimation extends StatefulWidget {
   final bool isReady;
   final randInd;
   @override
-  _InitialAnimationState createState() => _InitialAnimationState();
+  _ShuffleAnimationState createState() => _ShuffleAnimationState();
 }
 
-class _InitialAnimationState extends State<InitialAnimation>
-    with SingleTickerProviderStateMixin<InitialAnimation> {
-  AnimationController? controller;
-  double firstAnimationValue = 1;
+class _ShuffleAnimationState extends State<ShuffleAnimation>
+    with SingleTickerProviderStateMixin<ShuffleAnimation> {
+  AnimationController? _controller;
+  double shuffleAnimationValue = 1;
   bool isReady = true;
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 4));
-    controller!.addListener(() {
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
+    _controller!.addListener(() {
       setState(() {
-        firstAnimationValue = controller!.value;
+        shuffleAnimationValue = _controller!.value;
       });
     });
-
     onShufllefuture();
   }
 
+  @override
+  void dispose() {
+    _controller!.dispose();
+    super.dispose();
+  }
+
   Future<void> onShufllefuture() async {
-    controller!.reset();
-    var rand = Random();
-    int p = rand.nextInt(600);
-    if (isReady == true)
-      setState(() {
-        isReady = false;
-      });
-    Future.delayed(Duration(milliseconds: 1000 + p))
-        .then((value) => setState(() {
-              isReady = true;
-            }));
-    Future.delayed(Duration(milliseconds: 1800)).then((value) => setState(() {
-          controller!.forward();
-        }));
+    Future.delayed(Duration(milliseconds: 500)).then((value) {
+      _controller!.reset();
+      var rand = Random();
+      int p = rand.nextInt(400);
+      if (isReady == true) setState(() => isReady = false);
+      Future.delayed(Duration(milliseconds: 1000 + p))
+          .then((value) => setState(() {
+                isReady = true;
+              }));
+      Future.delayed(Duration(milliseconds: 1500)).then((value) => setState(() {
+            _controller!.forward();
+          }));
+    });
   }
 
   void onShuflle() => onShufllefuture();
@@ -61,7 +65,7 @@ class _InitialAnimationState extends State<InitialAnimation>
         restartStart: onShuflle,
         randInd: widget.randInd,
         isReady: isReady,
-        firstAnimationValue: firstAnimationValue,
+        shuffleAnimationValue: shuffleAnimationValue,
         index: widget.index);
   }
 }
@@ -71,11 +75,11 @@ class MoveAnimation extends StatefulWidget {
       {Key? key,
       required this.randInd,
       required this.index,
-      required this.firstAnimationValue,
+      required this.shuffleAnimationValue,
       required this.isReady,
       required this.restartStart})
       : super(key: key);
-  final double firstAnimationValue;
+  final double shuffleAnimationValue;
   final int index;
   final bool isReady;
   final int randInd;
@@ -94,20 +98,17 @@ class _MoveAnimationState extends State<MoveAnimation>
   initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 400));
+        vsync: this, duration: const Duration(milliseconds: 380));
     _controller!.addListener(_update);
   }
 
   @override
   void dispose() {
+    _controller!.dispose();
     super.dispose();
   }
 
-  void _update() {
-    setState(() {
-      secondAnimationValue = _controller!.value;
-    });
-  }
+  void _update() => setState(() => secondAnimationValue = _controller!.value);
 
   void onTap() {
     if (_controller!.isCompleted) {
@@ -122,12 +123,11 @@ class _MoveAnimationState extends State<MoveAnimation>
   Widget build(BuildContext context) {
     return CustomBox(
         restartStart: widget.restartStart,
-        randInd: widget.randInd,
         isReady: widget.isReady,
         secondAnimationValue: secondAnimationValue,
-        firstAnimationValue: widget.firstAnimationValue,
+        firstAnimationValue: widget.shuffleAnimationValue,
         start: onTap,
         child: Text('${widget.index}',
-            style: TextStyle(fontSize: 16, color: Colors.amber[50] as Color)));
+            style: TextStyle(fontSize: 18, color: Colors.amber[50] as Color)));
   }
 }

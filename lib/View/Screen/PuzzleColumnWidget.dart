@@ -21,7 +21,7 @@ class PuzzlePart extends StatelessWidget {
               CustPuzzle(
                 index: e,
                 randIndex: controller.randomList![e - 1],
-                child: InitialAnimation(
+                child: ShuffleAnimation(
                   isReady: false,
                   randInd: controller.randomList![e - 1],
                   index: e,
@@ -29,11 +29,6 @@ class PuzzlePart extends StatelessWidget {
               )
           ],
         ),
-        GetBuilder<Controller>(
-            id: 'Win',
-            builder: (Controller controller) {
-              return Text('${controller.wining}');
-            }),
         const SizedBox(
           height: 10,
         )
