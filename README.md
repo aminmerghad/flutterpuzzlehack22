@@ -1,5 +1,5 @@
 # puzzle
-demo app: https://wxldzh.csb.app/#/
+demo app: https://mm81ib.csb.app/#/
 
 ## How we built it.
 **1)- the main objective**
