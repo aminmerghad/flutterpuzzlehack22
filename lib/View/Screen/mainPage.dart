@@ -55,7 +55,7 @@ class _MainPageState extends State<MainPage> {
                 ]),
               ),
             ),
-            height: context.width * 0.08 + 40,
+            height: context.width > 500? 135: context.width*0.25
           ),
           Container(
             decoration: BoxDecoration(
