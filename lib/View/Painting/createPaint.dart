@@ -92,16 +92,16 @@ void recursionFn(
 
 List? findAllInterSections(Offset b, Offset e, double x, double y) {
   Offset? previousY = line([b, e], [Offset(x, y), Offset(x + 125, y)]);
-  previousY == b ? previousY = null : previousY;
+  if (previousY == b) previousY = null;
 
   Offset? offLineYLeft = line([b, e], [Offset(x, y), Offset(x, y + 125)]);
-  offLineYLeft == b ? offLineYLeft = null : offLineYLeft;
+  if (offLineYLeft == b) offLineYLeft = null;
 
   Offset? offLineYRghit =
       line([b, e], [Offset(x + 125, y), Offset(x + 125, y + 125)]);
-  offLineYRghit == b ? offLineYRghit = null : offLineYRghit;
+  if (offLineYRghit == b) offLineYRghit = null;
   Offset? nextY = line([b, e], [Offset(x, y + 125), Offset(x + 125, y + 125)]);
-  nextY == b ? nextY = null : nextY;
+  if (nextY == b) nextY = null;
 
   List? nonNull = onlynonNull([previousY, offLineYLeft, offLineYRghit, nextY]);
   return nonNull;

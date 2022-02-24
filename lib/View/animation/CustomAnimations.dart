@@ -25,8 +25,8 @@ class _ShuffleAnimationState extends State<ShuffleAnimation>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
+    _controller = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 3500));
     _controller!.addListener(() {
       setState(() {
         shuffleAnimationValue = _controller!.value;
@@ -42,16 +42,16 @@ class _ShuffleAnimationState extends State<ShuffleAnimation>
   }
 
   Future<void> onShufllefuture() async {
-    Future.delayed(Duration(milliseconds: 500)).then((value) {
+    Future.delayed(Duration(milliseconds: 900)).then((value) {
       _controller!.reset();
       var rand = Random();
-      int p = rand.nextInt(400);
+      int p = rand.nextInt(500);
       if (isReady == true) setState(() => isReady = false);
       Future.delayed(Duration(milliseconds: 1000 + p))
           .then((value) => setState(() {
                 isReady = true;
               }));
-      Future.delayed(Duration(milliseconds: 1500)).then((value) => setState(() {
+      Future.delayed(Duration(milliseconds: 1600)).then((value) => setState(() {
             _controller!.forward();
           }));
     });
@@ -88,7 +88,6 @@ class MoveAnimation extends StatefulWidget {
   State<MoveAnimation> createState() => _MoveAnimationState();
 }
 
-/// AnimationControllers can be created with `vsync: this` because of TickerProviderStateMixin.
 class _MoveAnimationState extends State<MoveAnimation>
     with SingleTickerProviderStateMixin<MoveAnimation> {
   AnimationController? _controller;
@@ -98,7 +97,7 @@ class _MoveAnimationState extends State<MoveAnimation>
   initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 380));
+        vsync: this, duration: const Duration(milliseconds: 415));
     _controller!.addListener(_update);
   }
 

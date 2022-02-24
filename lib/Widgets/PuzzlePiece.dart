@@ -147,10 +147,6 @@ class RenderCustomBox extends RenderShiftedBox
         paintNothing = true;
         markNeedsPaint();
       }
-      if (v > childparentData.pEndPoint!) {
-        paintNothing = true;
-        markNeedsPaint();
-      }
     }
   }
 

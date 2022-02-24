@@ -5,22 +5,19 @@ import 'package:puzzle/View/Painting/createPaint.dart';
 
 import '../Controller/controller.dart';
 
+extension Ex on double {
+  double toPrecision(int n) => double.parse(toStringAsFixed(n));
+}
+
 class PuzzleParentData extends ContainerBoxParentData<RenderBox> {
-  PuzzleParentData(
-      {this.boxlength = 125,
-      this.numbrRow = 4,
-      required Controller controllero})
-      :
-        //_controller = Get.find<Pu>();
-        controller = controllero;
+  PuzzleParentData({this.numbrRow = 4, required Controller controllero})
+      : controller = controllero;
   int? moveIndx;
-  double boxlength;
   int numbrRow;
   int? _randIndex;
   int? _index;
   double? pStartPoint;
   double? pEndPoint;
-  double? pMediumPoint;
   int get randIndex => _randIndex!;
   set randIndex(int rInd) {
     _randIndex = rInd;
@@ -35,14 +32,8 @@ class PuzzleParentData extends ContainerBoxParentData<RenderBox> {
   }
 
   Offset? idealposition;
-  Offset? translation;
   List<List<Offset>>? paints;
   Controller? controller;
-  @override
-  set offset(Offset _offset) {
-    super.offset = _offset;
-    if (idealposition != null) translation = _offset - idealposition!;
-  }
 
   Offset getPosition(int _index) {
     double y = ((_index - 1) ~/ numbrRow).toInt().toDouble();
@@ -55,8 +46,8 @@ class PuzzleParentData extends ContainerBoxParentData<RenderBox> {
       Offset(super.offset.dx, super.offset.dy),
       Offset(super.offset.dx + 125, super.offset.dy + 125)
     ], [
-      Offset(0, 0.01),
-      Offset(0.01, 0)
+      Offset(0, 0.1),
+      Offset(0.1, 0)
     ]) as Offset;
     Offset off2 = line2([
       Offset(super.offset.dx, super.offset.dy),
@@ -74,6 +65,5 @@ class PuzzleParentData extends ContainerBoxParentData<RenderBox> {
 
     pStartPoint = dist2 / dist1;
     pEndPoint = dist3 / dist1;
-    pMediumPoint = (pEndPoint! + pStartPoint!) / 2;
   }
 }
