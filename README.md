@@ -1,4 +1,7 @@
 # puzzle
+
+![](assets/p.png)
+
 demo app: https://0ic5vo.csb.app/#/
 
 ## How we built it.
